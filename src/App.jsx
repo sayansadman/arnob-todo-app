@@ -5,22 +5,23 @@ import TodoForm from "./components/TodoForm";
 import TodoTable from "./components/TodoTable";
 import todoList from "./components/todoList";
 import "./App.scss";
+// import { Button } from "react-bootstrap";
 
 function App() {
   const [task, setTask] = useState(todoList);
   // const [sortedTask, setSortedTask] = useState(task);
 
-  useEffect(() => {
-    // loadFromLocalStorage();
-    const data = localStorage.getItem("task");
-    if (data) {
-      setTask(JSON.parse(data));
-    }
-  });
+  // useEffect(() => {
+  //   // loadFromLocalStorage();
+  //   const data = localStorage.getItem("task");
+  //   if (data) {
+  //     setTask(JSON.parse(data));
+  //   }
+  // });
 
   // function sortTasks() {
   //   const sorted = [...task].sort((a, b) => a.priority - b.priority);
-  //   setSortedTask(sorted);
+  //   // setSortedTask(sorted);
   //   setTask(sorted);
   // }
 
@@ -49,7 +50,8 @@ function App() {
   return (
     <div className="App">
       <Heading />
-      <TodoForm submitTodo={addTodo} label={"Add a new note"} />
+      <TodoForm submitTodo={addTodo} label={" + Add a new note"} />
+      {/* <Button variant="warning" onClick={sortTasks}>Sort Tasks</Button> */}
       <TodoTable
         // sortTodo={sortTasks}
         tasks={task}

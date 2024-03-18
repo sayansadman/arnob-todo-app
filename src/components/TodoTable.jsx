@@ -1,6 +1,6 @@
 import TodoForm from "./TodoForm";
 import { Button, Table } from "react-bootstrap";
-
+import { Trash } from "react-bootstrap-icons";
 function TodoTable({ tasks, deleteTodo, editTodo, sortTodo }) {
   // const [showModal, setShowModal] = useState(false);
 
@@ -44,6 +44,7 @@ function TodoTable({ tasks, deleteTodo, editTodo, sortTodo }) {
                   label={"Edit"}
                 />
                 <Button variant="danger" onClick={() => deleteTodo(todo.id)}>
+                  <Trash style={{marginRight: "5px"}}/>
                   Delete
                 </Button>
               </td>

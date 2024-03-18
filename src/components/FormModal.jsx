@@ -1,7 +1,8 @@
 import React from "react";
 import { Button, Modal } from "react-bootstrap";
+import { Floppy, XCircle } from "react-bootstrap-icons";
 
-const FormModal = ({ showModal, closeModal, children, submit}) => {
+const FormModal = ({ showModal, closeModal, children, submit }) => {
   return (
     <Modal show={showModal} onHide={closeModal}>
       <Modal.Header closeButton>
@@ -10,10 +11,12 @@ const FormModal = ({ showModal, closeModal, children, submit}) => {
       <Modal.Body>{children}</Modal.Body>
       <Modal.Footer>
         <Button variant="danger" onClick={closeModal}>
-          Close
+          <XCircle style={{marginRight: "5px"}}/>
+          {"Close"}
         </Button>
         <Button variant="primary" onClick={submit}>
-          Save
+          <Floppy style={{marginRight: "10px"}}/>
+          {"Save"}
         </Button>
       </Modal.Footer>
     </Modal>
