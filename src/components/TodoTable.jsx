@@ -1,20 +1,21 @@
 import { useState } from "react";
 import Modal from "./FormModal";
 import TodoForm from "./TodoForm";
+import { Button, Table } from "react-bootstrap";
 
 function TodoTable({ tasks, deleteTodo, editTodo }) {
-  const [showModal, setShowModal] = useState(false);
+  // const [showModal, setShowModal] = useState(false);
 
-  function openModal() {
-    setShowModal(true);
-  }
+  // function openModal() {
+  //   setShowModal(true);
+  // }
 
-  function closeModal() {
-    setShowModal(false);
-  }
+  // function closeModal() {
+  //   setShowModal(false);
+  // }
   return (
     <div>
-      <table>
+      <Table responsive bordered striped variant="dark" hover="true">
         <thead>
           <tr>
             <th>#</th>
@@ -43,12 +44,14 @@ function TodoTable({ tasks, deleteTodo, editTodo }) {
                   defaultTodo={todo}
                   label={"Edit"}
                 />
-                <button onClick={() => deleteTodo(todo.id)}>Delete</button>
+                <Button variant="danger" onClick={() => deleteTodo(todo.id)}>
+                  Delete
+                </Button>
               </td>
             </tr>
           ))}
         </tbody>
-      </table>
+      </Table>
     </div>
   );
 }

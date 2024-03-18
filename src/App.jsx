@@ -32,7 +32,7 @@ function App() {
   return (
     <div className="App">
       <Heading />
-      <TodoForm submitTodo={addTodo} label={"Add note"} />
+      <TodoForm submitTodo={addTodo} label={"Add a new note"} />
       <TodoTable tasks={task} deleteTodo={deleteTask} editTodo={updateTodo} />
     </div>
   );
