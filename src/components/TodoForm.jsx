@@ -125,9 +125,9 @@ function TodoForm({ submitTodo, label, defaultTodo }) {
               <strong>Priority Level:</strong>
               <select
                 className="priority"
-                defaultValue={"3"}
+                // defaultValue={"3"}
                 onChange={handleChange}
-                // value={String(todo.priority)}
+                value={String(todo.priority)}
               >
                 <option value="1">1</option>
                 <option value="2">2</option>
@@ -143,8 +143,8 @@ function TodoForm({ submitTodo, label, defaultTodo }) {
               <strong>Status:</strong>
               <select
                 className="status"
-                defaultValue={"Not Started"}
-                // value={todo.status}
+                // defaultValue={"Not Started"}
+                value={todo.status}
                 onChange={handleChange}
               >
                 <option value="Not Started">Not Started</option>

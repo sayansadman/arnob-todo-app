@@ -8,6 +8,7 @@ import "./App.scss";
 
 function App() {
   const [task, setTask] = useState(todoList);
+  // const [sortedTask, setSortedTask] = useState(task);
 
   useEffect(() => {
     // loadFromLocalStorage();
@@ -16,6 +17,12 @@ function App() {
       setTask(JSON.parse(data));
     }
   });
+
+  // function sortTasks() {
+  //   const sorted = [...task].sort((a, b) => a.priority - b.priority);
+  //   setSortedTask(sorted);
+  //   setTask(sorted);
+  // }
 
   function addTodo(todo) {
     setTask([...task, todo]);
@@ -43,7 +50,12 @@ function App() {
     <div className="App">
       <Heading />
       <TodoForm submitTodo={addTodo} label={"Add a new note"} />
-      <TodoTable tasks={task} deleteTodo={deleteTask} editTodo={updateTodo} />
+      <TodoTable
+        // sortTodo={sortTasks}
+        tasks={task}
+        deleteTodo={deleteTask}
+        editTodo={updateTodo}
+      />
     </div>
   );
 }

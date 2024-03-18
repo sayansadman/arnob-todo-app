@@ -1,7 +1,7 @@
 import TodoForm from "./TodoForm";
 import { Button, Table } from "react-bootstrap";
 
-function TodoTable({ tasks, deleteTodo, editTodo }) {
+function TodoTable({ tasks, deleteTodo, editTodo, sortTodo }) {
   // const [showModal, setShowModal] = useState(false);
 
   // function openModal() {
@@ -16,9 +16,10 @@ function TodoTable({ tasks, deleteTodo, editTodo }) {
       <Table responsive bordered striped variant="dark" hover="true">
         <thead>
           <tr>
-            <th>#</th>
+            {/* <th>#</th> */}
             <th>Title</th>
             <th>Task</th>
+            {/* <th onClick={sortTodo}>Priority</th> */}
             <th>Priority</th>
             <th>Status</th>
             <th>Created At</th>
@@ -29,7 +30,7 @@ function TodoTable({ tasks, deleteTodo, editTodo }) {
         <tbody>
           {tasks.map((todo, index) => (
             <tr key={todo.id}>
-              <td>{index + 1}</td>
+              {/* <td>{index + 1}</td> */}
               <td>{todo.title}</td>
               <td>{todo.content}</td>
               <td>{todo.priority}</td>
