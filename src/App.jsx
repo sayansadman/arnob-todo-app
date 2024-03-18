@@ -19,23 +19,20 @@ function App() {
     setTask(newTask);
   }
 
-  function editTask(todo) {
-    const newTask = task.map((t) => {
-      if (t.id === todo.id) {
-        return todo;
+  function updateTodo(todo) {
+    const newTask = task.map((item) => {
+      if (item.id === todo.id) {
+        item = todo;
       }
-      return t;
+      return item;
     });
-
-    setTask(newTask);
   }
+
   return (
     <div className="App">
       <Heading />
-      <TodoForm submitTodo={addTodo} />
-      <br />
-      <br />
-      <TodoTable tasks={task} deleteTodo={deleteTask} />
+      <TodoForm submitTodo={addTodo} label={"Add note"} />
+      <TodoTable tasks={task} deleteTodo={deleteTask} updateTodo={updateTodo} />
     </div>
   );
 }

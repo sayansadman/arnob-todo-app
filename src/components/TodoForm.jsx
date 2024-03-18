@@ -1,7 +1,18 @@
-import { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { v4 as uuidv4 } from "uuid";
-function TodoForm({ submitTodo }) {
+import FormModal from "./FormModal";
+
+// const defaultTodo = {
+//   title: "",
+//   content: "",
+//   priority: 3,
+//   status: "Not Started",
+// };
+
+function TodoForm({ submitTodo, label, defaultTodo }) {
   const [todo, setTodo] = useState({});
+  const [showModal, setShowModal] = useState(false);
+
   function handleSubmit(event) {
     event.preventDefault();
     todo.id = uuidv4();
@@ -9,15 +20,22 @@ function TodoForm({ submitTodo }) {
     todo.updatedAt = new Date().toLocaleString();
     submitTodo(todo);
     reset();
+    setShowModal(false);
   }
 
+  useEffect(() => reset(), []);
+
   function reset() {
-    setTodo({
-      title: "",
-      content: "",
-      priority: 3,
-      status: "Not Started",
-    });
+    setTodo(
+      defaultTodo
+        ? defaultTodo
+        : {
+            title: "",
+            content: "",
+            priority: 3,
+            status: "Not Started",
+          }
+    );
   }
 
   function handleChange(event) {
@@ -52,63 +70,77 @@ function TodoForm({ submitTodo }) {
   }
 
   return (
-    <div>
-      <form>
-        <input
-          className="title"
-          type="text"
-          placeholder="Title"
-          value={todo.title}
-          onChange={handleChange}
-        />
-        <br />
-        <input
-          className="content"
-          type="text"
-          placeholder="What would you like to do?"
-          value={todo.content}
-          onChange={handleChange}
-        />
-        <div className="dropdown-wrapper">
-          <p>
-            <strong>Priority Level:</strong>
-          </p>
-          <select
-            className="priority"
-            defaultValue={"-"}
+    <React.Fragment>
+      <button
+        onClick={() => {
+          setShowModal(true);
+        }}
+      >
+        {label}
+      </button>
+      <FormModal
+        title={label}
+        showModal={showModal}
+        closeModal={() => setShowModal(false)}
+        submit={handleSubmit}
+      >
+        <form>
+          <input
+            className="title"
+            type="text"
+            placeholder="Title"
+            value={todo.title}
             onChange={handleChange}
-            value={todo.priority}
-          >
-            <option value="1">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-            <option value="4">4</option>
-            <option value="5">5</option>
-          </select>
-        </div>
-        <br />
-        <div className="dropdown-wrapper">
-          <p>
-            <strong> Status:</strong>
-          </p>
-          <select
-            className="status"
-            defaultValue={"-"}
-            value={todo.status}
+          />
+          <br />
+          <input
+            className="content"
+            type="text"
+            placeholder="What would you like to do?"
+            value={todo.content}
             onChange={handleChange}
-          >
-            <option value="Not Started">Not Started</option>
-            <option value="In Progress">In Progress</option>
-            <option value="Done">Done</option>
-            <option value="Failed">Failed</option>
-          </select>
-        </div>
-        <br />
-        <button type="submit" onClick={handleSubmit}>
-          Add Task
-        </button>
-      </form>
-    </div>
+          />
+          <div className="dropdown-wrapper">
+            <p>
+              <strong>Priority Level:</strong>
+            </p>
+            <select
+              className="priority"
+              defaultValue={"3"}
+              onChange={handleChange}
+              // value={String(todo.priority)}
+            >
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5</option>
+            </select>
+          </div>
+          <br />
+          <div className="dropdown-wrapper">
+            <p>
+              <strong> Status:</strong>
+            </p>
+            <select
+              className="status"
+              defaultValue={"Not Started"}
+              // value={todo.status}
+              onChange={handleChange}
+            >
+              <option value="Not Started">Not Started</option>
+              <option value="In Progress">In Progress</option>
+              <option value="Done">Done</option>
+              <option value="Failed">Failed</option>
+            </select>
+          </div>
+          <br />
+          <button type="submit" onClick={handleSubmit}>
+            Add Task
+          </button>
+        </form>
+      </FormModal>
+    </React.Fragment>
   );
 }
 
