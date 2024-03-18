@@ -26,13 +26,14 @@ function App() {
       }
       return item;
     });
+    setTask(newTask);
   }
 
   return (
     <div className="App">
       <Heading />
       <TodoForm submitTodo={addTodo} label={"Add note"} />
-      <TodoTable tasks={task} deleteTodo={deleteTask} updateTodo={updateTodo} />
+      <TodoTable tasks={task} deleteTodo={deleteTask} editTodo={updateTodo} />
     </div>
   );
 }

@@ -135,9 +135,6 @@ function TodoForm({ submitTodo, label, defaultTodo }) {
             </select>
           </div>
           <br />
-          <button type="submit" onClick={handleSubmit}>
-            Add Task
-          </button>
         </form>
       </FormModal>
     </React.Fragment>

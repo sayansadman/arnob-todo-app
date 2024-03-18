@@ -13,7 +13,7 @@ const FormModal = ({ showModal, closeModal, children, submit}) => {
           Close
         </Button>
         <Button variant="primary" onClick={submit}>
-          Submit
+          Save
         </Button>
       </Modal.Footer>
     </Modal>
