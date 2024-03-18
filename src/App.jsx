@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "bootstrap/dist/css/bootstrap.css";
 import Heading from "./components/Heading";
 import TodoForm from "./components/TodoForm";
@@ -8,13 +8,22 @@ import "./App.scss";
 
 function App() {
   const [task, setTask] = useState(todoList);
+
+  useEffect(() => {
+    // loadFromLocalStorage();
+    const data = localStorage.getItem("task");
+    if (data) {
+      setTask(JSON.parse(data));
+    }
+  });
+
   function addTodo(todo) {
     setTask([...task, todo]);
   }
 
   function deleteTask(id) {
     const newTask = task.filter((todo) => todo.id !== id);
-    console.log("something");
+    // console.log("something");
 
     setTask(newTask);
   }
@@ -27,6 +36,7 @@ function App() {
       return item;
     });
     setTask(newTask);
+    localStorage.setItem("task", JSON.stringify(newTask));
   }
 
   return (
