@@ -75,7 +75,7 @@ function TodoForm({ submitTodo }) {
           </p>
           <select
             className="priority"
-            defaultValue={3}
+            defaultValue={"-"}
             onChange={handleChange}
             value={todo.priority}
           >
@@ -93,7 +93,7 @@ function TodoForm({ submitTodo }) {
           </p>
           <select
             className="status"
-            defaultValue={"Not Started"}
+            defaultValue={"-"}
             value={todo.status}
             onChange={handleChange}
           >

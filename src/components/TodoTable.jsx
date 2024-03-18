@@ -28,7 +28,7 @@ function TodoTable({ tasks, deleteTodo, editTodo }) {
             <td>{todo.createdAt}</td>
             <td>{todo.updatedAt}</td>
             <td>
-              <button onClick={handleEdit(todo)}>Edit</button>
+              <button >Edit</button>
               <button onClick={() => deleteTodo(todo.id)}>Delete</button>
             </td>
           </tr>
