@@ -5,28 +5,30 @@ import TodoForm from "./components/TodoForm";
 import TodoTable from "./components/TodoTable";
 import todoList from "./components/todoList";
 import "./App.scss";
-// import { Button } from "react-bootstrap";
+import { Button } from "react-bootstrap";
 
 function App() {
   const [task, setTask] = useState(todoList);
   // const [sortedTask, setSortedTask] = useState(task);
 
-  // useEffect(() => {
-  //   // loadFromLocalStorage();
-  //   const data = localStorage.getItem("task");
-  //   if (data) {
-  //     setTask(JSON.parse(data));
-  //   }
-  // });
+  useEffect(() => {
+    // loadFromLocalStorage();
+    const data = localStorage.getItem("task");
+    if (data) {
+      setTask(JSON.parse(data));
+    }
+  }, []);
 
-  // function sortTasks() {
-  //   const sorted = [...task].sort((a, b) => a.priority - b.priority);
-  //   // setSortedTask(sorted);
-  //   setTask(sorted);
-  // }
+  function sortTasks() {
+    const sorted = [...task].sort((a, b) => a.priority - b.priority);
+    // setSortedTask(sorted);
+    setTask(sorted);
+  }
 
   function addTodo(todo) {
-    setTask([...task, todo]);
+    const newTask = [...task, todo];
+    setTask(newTask);
+    localStorage.setItem("task", JSON.stringify(newTask));
   }
 
   function deleteTask(id) {
@@ -34,6 +36,7 @@ function App() {
     // console.log("something");
 
     setTask(newTask);
+    localStorage.setItem("task", JSON.stringify(newTask));
   }
 
   function updateTodo(todo) {
@@ -51,9 +54,9 @@ function App() {
     <div className="App">
       <Heading />
       <TodoForm submitTodo={addTodo} label={" + Add a new note"} />
-      {/* <Button variant="warning" onClick={sortTasks}>Sort Tasks</Button> */}
+      <Button variant="warning" onClick={sortTasks}>Sort Tasks</Button>
       <TodoTable
-        // sortTodo={sortTasks}
+        sortTodo={sortTasks}
         tasks={task}
         deleteTodo={deleteTask}
         editTodo={updateTodo}
