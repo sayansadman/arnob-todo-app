@@ -8,45 +8,45 @@ import "./App.scss";
 import { Button } from "react-bootstrap";
 
 function App() {
-  const [task, setTask] = useState(todoList);
+  const [tasks, setTasks] = useState(todoList);
   // const [sortedTask, setSortedTask] = useState(task);
 
   useEffect(() => {
     // loadFromLocalStorage();
     const data = localStorage.getItem("task");
     if (data) {
-      setTask(JSON.parse(data));
+      setTasks(JSON.parse(data));
     }
   }, []);
 
   function sortTasks() {
-    const sorted = [...task].sort((a, b) => a.priority - b.priority);
+    const sorted = [...tasks].sort((a, b) => a.priority - b.priority);
     // setSortedTask(sorted);
-    setTask(sorted);
+    setTasks(sorted);
   }
 
   function addTodo(todo) {
-    const newTask = [...task, todo];
-    setTask(newTask);
+    const newTask = [...tasks, todo];
+    setTasks(newTask);
     localStorage.setItem("task", JSON.stringify(newTask));
   }
 
   function deleteTask(id) {
-    const newTask = task.filter((todo) => todo.id !== id);
+    const newTask = tasks.filter((todo) => todo.id !== id);
     // console.log("something");
 
-    setTask(newTask);
+    setTasks(newTask);
     localStorage.setItem("task", JSON.stringify(newTask));
   }
 
   function updateTodo(todo) {
-    const newTask = task.map((item) => {
+    const newTask = tasks.map((item) => {
       if (item.id === todo.id) {
         item = todo;
       }
       return item;
     });
-    setTask(newTask);
+    setTasks(newTask);
     localStorage.setItem("task", JSON.stringify(newTask));
   }
 
@@ -57,7 +57,7 @@ function App() {
       <Button variant="warning" onClick={sortTasks}>Sort Tasks</Button>
       <TodoTable
         sortTodo={sortTasks}
-        tasks={task}
+        tasks={tasks}
         deleteTodo={deleteTask}
         editTodo={updateTodo}
       />

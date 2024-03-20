@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { v4 as uuidv4 } from "uuid";
 import FormModal from "./FormModal";
 import Button from "react-bootstrap/Button";
-
+import { Form } from "react-bootstrap";
 
 // const defaultTodo = {
 //   title: "",
@@ -100,7 +100,7 @@ function TodoForm({ submitTodo, label, defaultTodo }) {
         closeModal={() => setShowModal(false)}
         submit={handleSubmit}
       >
-        <form>
+        <Form>
           <input
             className="title"
             type="text"
@@ -111,7 +111,7 @@ function TodoForm({ submitTodo, label, defaultTodo }) {
           />
           <br />
           <br />
-          <input
+          <textarea
             className="content"
             type="text"
             placeholder="What would you like to do?"
@@ -156,7 +156,7 @@ function TodoForm({ submitTodo, label, defaultTodo }) {
             </label>
           </div>
           <br />
-        </form>
+        </Form>
       </FormModal>
     </React.Fragment>
   );
